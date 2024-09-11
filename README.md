@@ -23,3 +23,21 @@ Features
 
 
 6. Error Handling: Shows informative messages if no data is found or the request fails.
+
+
+
+
+
+Snippets:
+
+
+
+
+<img width="342" alt="Screenshot 2024-09-11 at 16 52 58" src="https://github.com/user-attachments/assets/cdaa764d-4e1b-49c8-9a54-89e6e38ef18f">
+
+
+<img width="342" alt="Screenshot 2024-09-11 at 17 43 27" src="https://github.com/user-attachments/assets/23d55d6e-0669-420d-9b7b-617fafc4af60">
+
+
+
+<img width="342" alt="Screenshot 2024-09-11 at 16 53 23" src="https://github.com/user-attachments/assets/c90091e3-4764-44b7-a09d-ec23336bafc2">
