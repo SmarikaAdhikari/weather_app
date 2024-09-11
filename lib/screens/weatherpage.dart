@@ -62,88 +62,60 @@ class _WeatherPageState extends State<WeatherPage>
               ),
             ),
           ),
-          Column(
-            children: [
-              const SizedBox(height: 30),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const SizedBox(width: 100),
-                  const Text(
-                    'Weather App',
-                    style: TextStyle(color: Colors.white, fontSize: 32),
-                  ),
-                  IconButton(
-                    icon:
-                        const Icon(Icons.search, color: Colors.white, size: 25),
-                    onPressed: () {
-                      showSearch(
-                          context: context,
-                          delegate: WeatherSearchDelegate(
-                              onCitySelected: (selectedCity) {
-                            setState(() {
-                              city = selectedCity;
-                              weather = weatherService
-                                  .fetchWeather(city)
-                                  .then((data) => Weather.fromJson(data));
-                            });
-                          }));
-                    },
-                  ),
-                ],
-              ),
-              FadeTransition(
-                opacity: _animation,
-                child: FutureBuilder<Weather>(
-                  future: weather,
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    } else if (!snapshot.hasData) {
-                      return const Center(child: Text('No data found'));
-                    } else {
-                      final weather = snapshot.data!;
-                      return Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              _getCurrentDateTime(),
-                              style: const TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                                shadows: [
-                                  Shadow(
-                                    offset: Offset(2, 2),
-                                    blurRadius: 4.0,
-                                    color: Colors.black38,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 40),
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 1000),
-                              child: SizedBox(
-                                height: MediaQuery.of(context).size.height / 6,
-                                key: ValueKey(weather.icon),
-                                child: Image.network(
-                                  'https://openweathermap.org/img/w/${weather.icon}.png',
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            AnimatedSwitcher(
-                              duration: const Duration(milliseconds: 500),
-                              child: Text(
-                                weather.city,
-                                key: ValueKey(weather.city),
+          Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 5),
+            child: Column(
+              children: [
+                const SizedBox(height: 25),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Icon(Icons.menu, color: Colors.white, size: 25),
+                    const Text(
+                      'Weather App',
+                      style: TextStyle(color: Colors.white, fontSize: 32),
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.search,
+                          color: Colors.white, size: 25),
+                      onPressed: () {
+                        showSearch(
+                            context: context,
+                            delegate: WeatherSearchDelegate(
+                                onCitySelected: (selectedCity) {
+                              setState(() {
+                                city = selectedCity;
+                                weather = weatherService
+                                    .fetchWeather(city)
+                                    .then((data) => Weather.fromJson(data));
+                              });
+                            }));
+                      },
+                    ),
+                  ],
+                ),
+                FadeTransition(
+                  opacity: _animation,
+                  child: FutureBuilder<Weather>(
+                    future: weather,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (!snapshot.hasData) {
+                        return const Center(child: Text('No data found'));
+                      } else {
+                        final weather = snapshot.data!;
+                        return Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                _getCurrentDateTime(),
                                 style: const TextStyle(
-                                  fontSize: 32,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
                                   color: Colors.white,
                                   shadows: [
                                     Shadow(
@@ -154,87 +126,134 @@ class _WeatherPageState extends State<WeatherPage>
                                   ],
                                 ),
                               ),
-                            ),
-                            const SizedBox(height: 10),
-                            Center(
-                              child: AnimatedSwitcher(
-                                duration: const Duration(milliseconds: 500),
-                                child: Text(
-                                  '${weather.temperature}°C',
-                                  key: ValueKey(weather.temperature),
-                                  style: const TextStyle(
-                                    fontSize: 48,
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
-                                    shadows: [
-                                      Shadow(
-                                        offset: Offset(2, 2),
-                                        blurRadius: 4.0,
-                                        color: Colors.black38,
+                              const SizedBox(height: 50),
+                              Row(
+                                children: [
+                                  AnimatedSwitcher(
+                                    duration:
+                                        const Duration(milliseconds: 1000),
+                                    child: SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              6,
+                                      key: ValueKey(weather.icon),
+                                      child: Image.network(
+                                        'https://openweathermap.org/img/w/${weather.icon}.png',
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 5),
+                                  Column(
+                                    children: [
+                                      AnimatedSwitcher(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: Text(
+                                          weather.city,
+                                          key: ValueKey(weather.city),
+                                          style: const TextStyle(
+                                            fontSize: 32,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white,
+                                            shadows: [
+                                              Shadow(
+                                                offset: Offset(2, 2),
+                                                blurRadius: 4.0,
+                                                color: Colors.black38,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      AnimatedSwitcher(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: Text(
+                                          '${weather.temperature}°C',
+                                          key: ValueKey(weather.temperature),
+                                          style: const TextStyle(
+                                            fontSize: 48,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white,
+                                            shadows: [
+                                              Shadow(
+                                                offset: Offset(2, 2),
+                                                blurRadius: 4.0,
+                                                color: Colors.black38,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 10),
+                                      AnimatedSwitcher(
+                                        duration:
+                                            const Duration(milliseconds: 500),
+                                        child: Text(
+                                          '(${weather.description})',
+                                          key: ValueKey(weather.description),
+                                          style: const TextStyle(
+                                            fontSize: 24,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white,
+                                            shadows: [
+                                              Shadow(
+                                                offset: Offset(2, 2),
+                                                blurRadius: 4.0,
+                                                color: Colors.black38,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
                                     ],
                                   ),
-                                ),
+                                ],
                               ),
-                            ),
-                            const SizedBox(height: 50),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Container(
-                                  height: 90,
-                                  width: 120,
-                                  padding: const EdgeInsets.all(16.0),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white.withOpacity(0.7),
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: AnimatedSwitcher(
-                                    duration: const Duration(milliseconds: 500),
-                                    child: Text(
-                                      weather.description,
-                                      key: ValueKey(weather.description),
-                                      style: const TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.black87,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      maxLines: 2,
-                                    ),
-                                  ),
-                                ),
-                                card(weather, 'Wind Speed',
-                                    '${weather.windSpeed} m/s'),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                card(weather, 'Pressure',
-                                    '${weather.pressure} hPa'),
-                                card(weather, 'Humidity',
-                                    '${weather.humidity} %'),
-                              ],
-                            ),
-                            const SizedBox(height: 20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                card(weather, 'Visibility: ',
-                                    '${weather.visibility}'),
-                                card(weather, 'Sea Level: ',
-                                    '${weather.sealevel} m'),
-                              ],
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                  },
+                              const SizedBox(height: 80),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  card(weather, 'Wind Speed:',
+                                      '${weather.windSpeed} m/s'),
+                                  card(weather, 'Feels like:',
+                                      '${weather.feelslike}°C'),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  card(weather, 'Pressure:',
+                                      '${weather.pressure} hPa'),
+                                  card(weather, 'Humidity:',
+                                      '${weather.humidity} %'),
+                                ],
+                              ),
+                              const SizedBox(height: 20),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  card(weather, 'Visibility:',
+                                      '${weather.visibility}'),
+                                  card(weather, 'Sea Level:',
+                                      '${weather.sealevel} m'),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),
@@ -249,6 +268,13 @@ class _WeatherPageState extends State<WeatherPage>
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.7),
         borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: const Color.fromARGB(255, 129, 129, 129).withOpacity(0.5),
+            blurRadius: 10,
+            offset: const Offset(0, 3),
+          ),
+        ],
       ),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),

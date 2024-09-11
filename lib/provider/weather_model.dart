@@ -8,6 +8,7 @@ class Weather {
   final String humidity;
   final String? visibility;
   final String sealevel;
+  final String? feelslike;
 
   Weather({
     required this.city,
@@ -19,6 +20,7 @@ class Weather {
     required this.humidity,
     required this.visibility,
     required this.sealevel,
+    required this.feelslike,
     
 
   });
@@ -34,6 +36,7 @@ class Weather {
       humidity: json['main']['humidity'].toString(),
       visibility: json['visibility'].toString(),
       sealevel: json['main']['sea_level'].toString(),
+      feelslike: json['main']['feels_like'].toString(),
 
     );
   }
