@@ -37,7 +37,10 @@ class WeatherSearchDelegate extends SearchDelegate {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Colors.blue, Colors.blueAccent],
+          colors: [
+            Color.fromARGB(255, 50, 136, 176),
+            Color.fromARGB(255, 228, 233, 242)
+          ],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -45,10 +48,17 @@ class WeatherSearchDelegate extends SearchDelegate {
       child: Center(
         child: Stack(
           children: [
-            Image.asset(
-              'images/bgfour.jpeg',
-              height: 800,
-              fit: BoxFit.cover,
+            Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.fromARGB(255, 50, 136, 176),
+                    Color.fromARGB(255, 228, 233, 242)
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
+              ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
@@ -77,13 +87,18 @@ class WeatherSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     final List<String> suggestions = [
-      'Nepal',
+      'Kathmandu',
       'London',
       'New York',
-      'United Kingdom',
-      'Germany',
-      'France',
-      'Italy',
+      'Paris',
+      'Berlin',
+      'Tokyo',
+      'Male',
+      'Beijing',
+      'Sydney',
+      'Moscow',
+      'Cairo',
+      'Rome',
     ];
 
     return Container(

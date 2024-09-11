@@ -34,7 +34,7 @@ class WelcomeScreen extends StatelessWidget {
                     height: 300,
                   ),
                   Text(
-                    'WeatherMate',
+                    'Weather App',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 40,

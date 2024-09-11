@@ -14,7 +14,7 @@ class WeatherPage extends StatefulWidget {
 class _WeatherPageState extends State<WeatherPage>
     with SingleTickerProviderStateMixin {
   final WeatherService weatherService = WeatherService();
-  String city = 'Nepal';
+  String city = 'Kathmandu';
   late Future<Weather> weather;
   late AnimationController _controller;
   late Animation<double> _animation;
@@ -51,13 +51,14 @@ class _WeatherPageState extends State<WeatherPage>
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
-              color: Colors.lightBlue.shade800,
-              image: const DecorationImage(
-                image: AssetImage(
-                  'images/bgfour.jpeg',
-                ),
-                fit: BoxFit.cover,
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromARGB(255, 50, 136, 176),
+                  Color.fromARGB(255, 228, 233, 242)
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
               ),
             ),
           ),
