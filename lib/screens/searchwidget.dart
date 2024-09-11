@@ -93,7 +93,7 @@ class WeatherSearchDelegate extends SearchDelegate {
       'Paris',
       'Berlin',
       'Tokyo',
-      'Male',
+      'Madrid',
       'Beijing',
       'Sydney',
       'Moscow',

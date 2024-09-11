@@ -224,7 +224,7 @@ class _WeatherPageState extends State<WeatherPage>
                                 card(weather, 'Visibility: ',
                                     '${weather.visibility}'),
                                 card(weather, 'Sea Level: ',
-                                    '${weather.sealevel} '),
+                                    '${weather.sealevel} m'),
                               ],
                             ),
                           ],
