@@ -9,7 +9,7 @@ class WeatherSearchDelegate extends SearchDelegate {
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear, color: Colors.blue.shade500),
+        icon: const Icon(Icons.clear, color: Color.fromARGB(255, 81, 138, 184)),
         onPressed: () {
           query = '';
         },
@@ -20,7 +20,8 @@ class WeatherSearchDelegate extends SearchDelegate {
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.arrow_back_ios, color: Colors.blueAccent),
+      icon: const Icon(Icons.arrow_back_ios,
+          color: Color.fromARGB(255, 81, 138, 184)),
       onPressed: () {
         close(context, null);
       },
